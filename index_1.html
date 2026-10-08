@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Happy 19th Birthday, Escondiii!">
+<title>Chapter 19</title>
+<style>
+[hidden]{display:none!important}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Fredoka:wght@400;500;600&family=Chivo+Mono:wght@700&family=Shippori+Mincho+B1:wght@800&display=swap">
+<style>
+/* Layout: dark arcade boot screen → one centered stage: the cake, then the song-synced name reveal beneath it. Single bright look by choice. */
+:root{
+  color-scheme: light;
+  --bg:#f4edff;
+  --bg2:#ffffff;
+  --ink:#2a1650;
+  --muted:#6e5d93;
+  --pink:#ff4fa0;
+  --sun:#ffcf33;
+  --mint:#18c9b5;
+  --sky:#5b8cff;
+  --f-disp:"Lilita One","Arial Rounded MT Bold",system-ui,sans-serif;
+  --f-body:"Fredoka","Trebuchet MS",system-ui,sans-serif;
+  --f-mono:"Chivo Mono",ui-monospace,Menlo,monospace;
+  --f-jp:"Shippori Mincho B1","Hiragino Mincho ProN",serif;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-body);font-size:17px;line-height:1.55;padding-inline:16px;overflow-x:hidden;
+  background:radial-gradient(ellipse at 50% 30%,#fff 0%,var(--bg) 60%) fixed,var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+h1,h2{text-wrap:balance;margin:0;font-weight:400}
+.wrap{max-width:900px;margin:0 auto;text-align:center;padding-block:28px 80px;position:relative}
+
+.snd{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:16px;z-index:50;background:var(--bg2);border:2px solid var(--ink);border-radius:999px;padding:6px 12px;font-size:16px;box-shadow:3px 3px 0 var(--ink)}
+
+.tag{display:inline-block;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--sun);border:3px solid var(--ink);border-radius:999px;padding:4px 16px;transform:rotate(-3deg);box-shadow:3px 3px 0 var(--ink)}
+.stagehead{font-family:var(--f-disp);font-size:clamp(34px,6.5vw,60px);line-height:1.05;margin-top:18px;color:var(--pink);-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
+.lede{color:var(--muted);font-size:18px;margin:10px auto 0;max-width:46ch}
+
+.cake{position:relative;max-width:620px;margin:10px auto 0}
+.cake svg{width:100%;height:auto;display:block;touch-action:none}
+.candle{cursor:pointer}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .2s ease-in-out infinite alternate}
+.glow{animation:glow 1.2s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scaleY(1) skewX(-4deg)}to{transform:scaleY(1.12) skewX(4deg)}}
+@keyframes glow{from{opacity:.55}to{opacity:.9}}
+.candle.out .flame,.candle.out .glow{display:none}
+.smoke{opacity:0}
+.candle.out .smoke{animation:smoke 1.4s ease-out forwards}
+@keyframes smoke{0%{opacity:.6;transform:translateY(0) scale(.6)}100%{opacity:0;transform:translateY(-36px) scale(1.6)}}
+.cake.done{animation:cheer .7s}
+@keyframes cheer{30%{transform:scale(1.03) rotate(-1deg)}60%{transform:scale(.99) rotate(1deg)}}
+
+.panel{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.count{font-family:var(--f-disp);font-size:22px;background:var(--bg2);border:3px solid var(--ink);border-radius:999px;padding:6px 18px;box-shadow:3px 3px 0 var(--ink);font-variant-numeric:tabular-nums}
+.count b{color:var(--pink)}
+.wish{font-family:var(--f-disp);font-size:22px;min-height:1.5em;margin-top:12px}
+.btn{font-family:var(--f-disp);font-size:18px;background:var(--pink);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:10px 22px;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.sun{background:var(--sun);color:var(--ink)}
+.btn.plain{background:var(--bg2);color:var(--ink)}
+
+#reveal{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding-block:40px;margin-top:20px}
+#reveal[hidden]{display:none}
+.wrap{z-index:2;pointer-events:none}
+.wrap button,.wrap .ch,.wrap .cake,.wrap a{pointer-events:auto}
+.title{font-family:var(--f-disp);font-size:clamp(52px,12vw,130px);line-height:.95}
+.title .row{display:block}
+.title .ch{display:inline-block;cursor:pointer;-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--ink);transition:transform .35s cubic-bezier(.3,2,.5,1),opacity .2s}
+.title .ch:hover{transform:translateY(-10px) rotate(-6deg)}
+.title .ch.hide{opacity:0;transform:scale(0) translateY(40px) rotate(-20deg)}
+.title .ch.boing{animation:boing .5s cubic-bezier(.3,2,.5,1)}
+@keyframes boing{30%{transform:scale(1.35,.7)}60%{transform:scale(.85,1.2) translateY(-18px)}}
+.title .nm .ch{color:var(--pink)!important}
+.after{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;pointer-events:none;margin-top:24px}
+.after.show{opacity:1;transform:none;pointer-events:auto}
+.after p{font-size:22px;font-weight:600;color:var(--muted);margin:0 auto 18px;max-width:36ch}
+
+#balloons{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.bal{position:absolute;bottom:-160px;width:66px;pointer-events:auto;cursor:pointer;animation:rise linear forwards}
+.bal svg{width:100%;height:auto;display:block;animation:sway 3s ease-in-out infinite alternate;transform-origin:50% 100%}
+@keyframes rise{to{transform:translateY(calc(-100vh - 400px))}}
+@keyframes sway{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+
+.boot{position:fixed;inset:0;z-index:80;background:#0a0710;display:grid;place-items:center;text-align:center;padding:24px;transition:clip-path .9s cubic-bezier(.7,0,.3,1);clip-path:circle(150% at 50% 50%);color:#fff}
+.boot.gone{clip-path:circle(0% at 50% 50%);pointer-events:none}
+.boot .k{font-family:var(--f-jp);font-size:clamp(90px,20vw,180px);color:var(--pink);line-height:1;text-shadow:0 0 30px rgba(255,79,160,.6)}
+.boot .press{font-family:var(--f-mono);font-size:clamp(16px,3vw,22px);letter-spacing:.35em;margin-top:24px;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.2}}
+.boot small{display:block;font-family:var(--f-mono);color:#a99bc7;margin-top:12px;font-size:12px}
+
+#fx{position:fixed;inset:0;pointer-events:none;z-index:65;width:100%;height:100%}
+@media (max-width:500px){.bal{width:50px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="boot" id="boot" role="button" tabindex="0" aria-label="Start">
+  <div>
+    <div class="k">十九</div>
+    <div class="press">PRESS START</div>
+    <small>click or tap anywhere · sound on</small>
+  </div>
+</div>
+
+<canvas id="fx"></canvas>
+<div id="balloons"></div>
+<button class="snd" id="snd" aria-pressed="true" aria-label="Sound">🔊</button>
+
+<main class="wrap">
+  <span class="tag">Level 19 · make a wish</span>
+  <h2 class="stagehead">Blow out all 19 candles</h2>
+  <p class="lede">Tap each flame, swipe across them, or hold the button for one giant breath.</p>
+
+  <div class="cake" id="cake"><svg id="cakeSvg" viewBox="0 110 600 420" role="img" aria-label="Birthday cake with 19 candles"></svg></div>
+
+  <div class="panel">
+    <span class="count"><b id="flames">19</b> flames left</span>
+    <button class="btn" id="blowBtn">Hold to blow 💨</button>
+    <button class="btn plain" id="relight">Relight</button>
+  </div>
+  <div class="wish" id="cakeWish">Close your eyes. Make a wish.</div>
+
+  <section id="reveal" hidden>
+    <h1 class="title" id="title" aria-label="Happy Birthday Escondiii"></h1>
+    <div class="after" id="after">
+      <button class="btn sun" id="replay">♪ Play song again</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem('ch19d:'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('ch19d:'+k,JSON.stringify(v))}catch(e){}}};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const COLORS=['#ff4fa0','#ffcf33','#18c9b5','#5b8cff','#ff8a3d','#b47cff'];
+const NAME='Escondiii';
+
+/* ---------- sound ---------- */
+let AC=null,soundOn=store.get('snd',true);
+function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC}
+function tone(f,d=.12,type='triangle',v=.07,slide=0,at=0){if(!soundOn)return;const a=ac();if(!a)return;const t=a.currentTime+at,o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,f*slide),t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g).connect(a.destination);o.start(t);o.stop(t+d+.02)}
+function noise(d=.15,v=.08,hp=1200){if(!soundOn)return;const a=ac();if(!a)return;const b=a.createBuffer(1,a.sampleRate*d,a.sampleRate),c=b.getChannelData(0);for(let i=0;i<c.length;i++)c[i]=(Math.random()*2-1)*Math.pow(1-i/c.length,2);const s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();f.type='highpass';f.frequency.value=hp;g.gain.value=v;s.buffer=b;s.connect(f).connect(g).connect(a.destination);s.start()}
+const sfx={pop:()=>{noise(.12,.25,800);tone(900,.08,'square',.04,.4)},boing:()=>tone(220,.25,'sine',.12,3),puff:()=>noise(.25,.07,400),win:()=>[523,659,784,1047].forEach((f,i)=>tone(f,.2,'triangle',.08,0,i*.1))};
+const sndBtn=$('#snd');function paintSnd(){sndBtn.textContent=soundOn?'🔊':'🔇';sndBtn.setAttribute('aria-pressed',soundOn)}paintSnd();
+sndBtn.onclick=()=>{soundOn=!soundOn;store.set('snd',soundOn);paintSnd()};
+
+/* Happy Birthday melody (public domain) */
+const G=392,A=440,B=493.9,C=523.3,D=587.3,E=659.3,F=698.5,G5=784;
+const SONG=[[G,.75],[G,.25],[A,1],[G,1],[C,1],[B,2],[G,.75],[G,.25],[A,1],[G,1],[D,1],[C,2],[G,.75],[G,.25],[G5,1],[E,1],[C,1],[B,1],[A,2],[F,.75],[F,.25],[E,1],[C,1],[D,1],[C,2]];
+let songPlaying=false;
+function playSong(onNote,onEnd){if(songPlaying)return;songPlaying=true;let t=0;const beat=.42;
+ SONG.forEach(([f,d],i)=>{tone(f,d*beat*.95,'triangle',.1,0,t);tone(f/2,d*beat*.9,'sine',.05,0,t);const at=t;setTimeout(()=>onNote&&onNote(i),at*1000);t+=d*beat});
+ setTimeout(()=>{songPlaying=false;onEnd&&onEnd()},t*1000+150)}
+
+/* ---------- confetti ---------- */
+const fx=$('#fx'),fc=fx.getContext('2d');let parts=[],fxRun=false;
+function sizeFx(){fx.width=innerWidth*devicePixelRatio;fx.height=innerHeight*devicePixelRatio;fc.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}sizeFx();addEventListener('resize',sizeFx);
+function confetti(n=150,x=innerWidth/2,y=innerHeight/3,pal=COLORS){if(reduce)return;for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=3+Math.random()*10;parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,w:6+Math.random()*8,h:4+Math.random()*5,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:pal[i%pal.length],life:170+Math.random()*80,sh:Math.random()<.25?'c':Math.random()<.15?'s':'r'})}if(!fxRun){fxRun=true;requestAnimationFrame(fxLoop)}}
+function star(c,r){c.beginPath();for(let i=0;i<10;i++){const a=i*Math.PI/5,rr=i%2?r*.45:r;c.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}c.closePath();c.fill()}
+function fxLoop(){fc.clearRect(0,0,innerWidth,innerHeight);parts=parts.filter(p=>p.life-->0&&p.y<innerHeight+40);for(const p of parts){p.vy+=.2;p.vx*=.985;p.x+=p.vx+Math.sin(p.life/10)*.8;p.y+=p.vy;p.r+=p.vr;fc.save();fc.translate(p.x,p.y);fc.rotate(p.r);fc.fillStyle=p.c;if(p.sh==='c'){fc.beginPath();fc.arc(0,0,p.h*.7,0,7);fc.fill()}else if(p.sh==='s')star(fc,p.w*.8);else fc.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.life/8)));fc.restore()}if(parts.length)requestAnimationFrame(fxLoop);else{fxRun=false;fc.clearRect(0,0,innerWidth,innerHeight)}}
+
+/* ---------- balloons ---------- */
+let balOn=false;
+function balloonSVG(c){return `<svg viewBox="0 0 70 130"><path d="M35 88 q-6 14 4 24 q-10 8 0 18" stroke="#2a1650" stroke-width="1.5" fill="none"/><ellipse cx="35" cy="42" rx="30" ry="38" fill="${c}" stroke="#2a1650" stroke-width="3"/><path d="M30 80 l5 8 l5 -8z" fill="${c}" stroke="#2a1650" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="24" cy="26" rx="6" ry="11" fill="#fff" opacity=".55" transform="rotate(-20 24 26)"/></svg>`}
+function spawnBalloon(){if(document.hidden)return;const b=document.createElement('div');b.className='bal';const c=COLORS[Math.floor(Math.random()*COLORS.length)];b.innerHTML=balloonSVG(c);b.style.left=(Math.random()*92)+'%';b.style.animationDuration=(9+Math.random()*7)+'s';b.querySelector('svg').style.animationDelay=(-Math.random()*3)+'s';
+ b.addEventListener('pointerdown',e=>{e.preventDefault();sfx.pop();confetti(40,e.clientX,e.clientY,[c,'#fff','#ffcf33']);b.remove()});
+ b.addEventListener('animationend',e=>{if(e.target===b)b.remove()});$('#balloons').appendChild(b)}
+function launchBalloons(){if(balOn||reduce)return;balOn=true;for(let i=0;i<10;i++)setTimeout(spawnBalloon,i*280)}
+
+/* ---------- boot ---------- */
+const boot=$('#boot');
+function start(){if(boot.classList.contains('gone'))return;ac();boot.classList.add('gone');sfx.win();setTimeout(()=>confetti(80,innerWidth/2,innerHeight*.2),500);setTimeout(()=>boot.remove(),1000)}
+boot.addEventListener('click',start);boot.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')start()});
+
+/* ---------- cake ---------- */
+const svg=$('#cakeSvg');const N=19;let lit=N;
+function rnd(seed){let s=seed;return()=>{s=(s*9301+49297)%233280;return s/233280}}
+function drips(x0,x1,y,ry,cx,color,seed,maxLen){const r=rnd(seed);let d=`M${x0} ${y}`;const steps=22;
+ for(let i=0;i<=steps;i++){const x=x0+(x1-x0)*i/steps;const t=(x-cx)/((x1-x0)/2);const yy=y+ry*Math.sqrt(Math.max(0,1-t*t));const L=8+r()*maxLen;const w=(x1-x0)/steps;
+  if(i===0){d+=` L${x} ${yy+L*.4}`;continue}
+  d+=` Q${x-w*.5} ${yy+6} ${x-w*.25} ${yy+L} a${w*.25} ${w*.25} 0 0 0 ${w*.5} 0 Q${x} ${yy+4} ${x} ${yy+8}`}
+ d+=` L${x1} ${y} Z`;return `<path d="${d}" fill="${color}"/>`}
+function tier(x0,x1,top,bot,ry,body,dark,icing,icingTop,seed,maxLen){const cx=(x0+x1)/2,rx=(x1-x0)/2,g='g'+seed;
+ return `<linearGradient id="${g}" x1="0" x2="1"><stop offset="0" stop-color="${dark}"/><stop offset=".3" stop-color="${body}"/><stop offset=".55" stop-color="${body}"/><stop offset="1" stop-color="${dark}"/></linearGradient>
+ <path d="M${x0} ${top} V${bot} A${rx} ${ry} 0 0 0 ${x1} ${bot} V${top} Z" fill="url(#${g})"/>
+ ${drips(x0,x1,top,ry,cx,icing,seed,maxLen)}
+ <ellipse cx="${cx}" cy="${top}" rx="${rx}" ry="${ry}" fill="${icingTop}"/>
+ <ellipse cx="${cx-rx*.25}" cy="${top-ry*.25}" rx="${rx*.45}" ry="${ry*.35}" fill="#fff" opacity=".35"/>`}
+function frontArc(cx,cy,rx,ry,n,pad=.05){const pts=[];for(let i=0;i<n;i++){const a=Math.PI*(pad+(1-2*pad)*i/(n-1));pts.push([cx-Math.cos(a)*rx,cy+Math.sin(a)*ry])}return pts}
+function rosette(x,y,r,c,c2){return `<g><circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/><path d="M${x-r*.6} ${y} a${r*.6} ${r*.6} 0 1 1 ${r*.6} ${r*.6} a${r*.35} ${r*.35} 0 1 1 0 -${r*.7}" fill="none" stroke="${c2}" stroke-width="1.6" stroke-linecap="round"/></g>`}
+function berry(x,y,r){return `<g><circle cx="${x}" cy="${y}" r="${r}" fill="#e3123f"/><circle cx="${x}" cy="${y}" r="${r}" fill="url(#berryShade)"/><circle cx="${x-r*.35}" cy="${y-r*.35}" r="${r*.28}" fill="#fff" opacity=".8"/><path d="M${x} ${y-r} q3 -8 9 -10" stroke="#3c7a2a" stroke-width="2" fill="none" stroke-linecap="round"/></g>`}
+
+function buildCake(){
+ const sp=rnd(7);let s=`<defs>
+  <radialGradient id="flameG" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fffbe6"/><stop offset=".45" stop-color="#ffd23a"/><stop offset="1" stop-color="#ff6a1f"/></radialGradient>
+  <radialGradient id="glowG"><stop offset="0" stop-color="#ffd76a" stop-opacity=".75"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+  <radialGradient id="berryShade" cx=".35" cy=".35" r=".8"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient>
+  <linearGradient id="plate" x1="0" x2="1"><stop offset="0" stop-color="#c9a24a"/><stop offset=".35" stop-color="#ffe7a3"/><stop offset=".6" stop-color="#e0b95a"/><stop offset="1" stop-color="#a87f2b"/></linearGradient>
+  <radialGradient id="halo" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="#ffd6ec"/><stop offset="1" stop-color="#ffd6ec" stop-opacity="0"/></radialGradient>
+ </defs>
+ <ellipse cx="300" cy="300" rx="300" ry="240" fill="url(#halo)"/>
+ <ellipse cx="300" cy="512" rx="230" ry="16" fill="#2a1650" opacity=".15"/>
+ <path d="M262 470 L248 506 H352 L338 470 Z" fill="url(#plate)"/>
+ <ellipse cx="300" cy="506" rx="62" ry="10" fill="#b48a33"/>
+ <ellipse cx="300" cy="468" rx="262" ry="30" fill="#a87f2b"/>
+ <ellipse cx="300" cy="462" rx="262" ry="30" fill="url(#plate)"/>
+ <ellipse cx="300" cy="458" rx="238" ry="24" fill="#fff8e6"/>`;
+ // bottom tier: strawberry pink with white drip
+ s+=tier(80,520,330,448,30,'#ff8fc4','#e9539a','#fffaf2','#fff6ee',11,32);
+ // sprinkles on bottom tier body
+ for(let i=0;i<46;i++){const x=95+sp()*410,y=385+sp()*55;s+=`<rect x="${x}" y="${y}" width="9" height="3.2" rx="1.6" fill="${COLORS[i%6]}" transform="rotate(${sp()*180} ${x+4} ${y+1})"/>`}
+ // gold pearls at base
+ frontArc(300,448,220,30,26,.02).forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y-4}" r="5.5" fill="#f3cd6a"/><circle cx="${x-1.5}" cy="${y-5.5}" r="1.8" fill="#fff"/>`);
+ // rosettes on bottom tier ledge
+ frontArc(300,330,206,26,13,.06).forEach(([x,y],i)=>s+=rosette(x,y-2,11,'#fff','#f3c9dd'));
+ // top tier: vanilla cream with pink drip
+ s+=tier(150,450,212,328,22,'#fff1d6','#ecd3a6','#ff5aa5','#ff6fb1',23,26);
+ // "19" in piped icing
+ s+=`<text x="300" y="300" text-anchor="middle" font-family="Lilita One,sans-serif" font-size="46" fill="#ff4fa0" stroke="#fff" stroke-width="3" paint-order="stroke">19</text>`;
+ // berries and rosettes on top tier edge (front)
+ frontArc(300,212,146,20,9,.08).forEach(([x,y],i)=>s+= i%2? berry(x,y-4,9) : rosette(x,y-3,9,'#fff','#ffd1e6'));
+ // candles: back row then front row on the top face
+ const rows=[{n:9,y:206,span:220,h:52},{n:10,y:220,span:250,h:46}];let idx=0;
+ rows.forEach((r,ri)=>{for(let k=0;k<r.n;k++){const x=300-r.span/2+k*(r.span/(r.n-1));const c=COLORS[(idx)%6];const top=r.y-r.h;
+  s+=`<g class="candle" data-i="${idx}" tabindex="0" role="button" aria-label="Candle ${idx+1}">
+   <rect x="${x-13}" y="${top-46}" width="26" height="${r.h+46}" fill="transparent"/>
+   <circle class="glow" cx="${x}" cy="${top-16}" r="26" fill="url(#glowG)"/>
+   <rect x="${x-5}" y="${top}" width="10" height="${r.h}" rx="3" fill="${c}"/>
+   <rect x="${x-5}" y="${top}" width="3.5" height="${r.h}" rx="1.5" fill="#fff" opacity=".35"/>
+   <path d="M${x-5} ${top+10} l10 -5 M${x-5} ${top+22} l10 -5 M${x-5} ${top+34} l10 -5" stroke="#fff" stroke-width="2.2" opacity=".85"/>
+   <line x1="${x}" y1="${top}" x2="${x}" y2="${top-6}" stroke="#3a2a1a" stroke-width="1.8" stroke-linecap="round"/>
+   <path class="flame" d="M${x} ${top-32} C${x+9} ${top-18} ${x+7} ${top-6} ${x} ${top-5} C${x-7} ${top-6} ${x-9} ${top-18} ${x} ${top-32}Z" fill="url(#flameG)"/>
+   <ellipse class="flame" cx="${x}" cy="${top-11}" rx="2.4" ry="4" fill="#fff" opacity=".9"/>
+   <circle class="smoke" cx="${x}" cy="${top-14}" r="6" fill="#c8bcdc"/></g>`;idx++}});
+ svg.innerHTML=s;
+ svg.querySelectorAll('.candle').forEach(g=>{g.addEventListener('click',()=>blow(g));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();blow(g)}})})}
+svg.addEventListener('pointermove',e=>{if(!e.buttons&&e.pointerType!=='touch')return;const el=document.elementFromPoint(e.clientX,e.clientY);const g=el&&el.closest&&el.closest('.candle');if(g)blow(g)});
+
+function blow(g){if(g.classList.contains('out'))return;ac();g.classList.add('out');lit--;$('#flames').textContent=lit;sfx.puff();
+ $('#cakeWish').textContent=lit>14?'Keep blowing!':lit>8?'Halfway there!':lit>1?'Almost!':lit===1?'One more!':'Wish granted! 🎉';
+ if(lit===0){clearInterval(holdT);bigReveal()}}
+let holdT=null;const blowBtn=$('#blowBtn');
+function holdStart(e){e.preventDefault();ac();clearInterval(holdT);const gs=[...svg.querySelectorAll('.candle:not(.out)')];let i=0;holdT=setInterval(()=>{const g=gs[i++];if(!g){clearInterval(holdT);return}blow(g)},90)}
+function holdEnd(){clearInterval(holdT)}
+blowBtn.addEventListener('pointerdown',holdStart);addEventListener('pointerup',holdEnd);blowBtn.addEventListener('pointerleave',holdEnd);
+blowBtn.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.repeat)holdStart(e)});blowBtn.addEventListener('keyup',holdEnd);
+$('#relight').onclick=()=>{lit=N;$('#flames').textContent=N;$('#cakeWish').textContent='Close your eyes. Make a wish.';$('#cake').classList.remove('done');buildCake();tone(400,.25,'triangle',.06,2)};
+buildCake();
+
+/* ---------- title + reveal ---------- */
+const tEl=$('#title');const letters=[];
+['Happy','Birthday',NAME].forEach((w,wi)=>{const r=document.createElement('span');r.className='row'+(wi===2?' nm':'');[...w].forEach((c,i)=>{const s=document.createElement('span');s.className='ch hide';s.textContent=c;s.style.color=COLORS[(i+wi*3)%COLORS.length];s.addEventListener('click',()=>{s.classList.remove('boing');void s.offsetWidth;s.classList.add('boing');sfx.boing()});r.appendChild(s);letters.push(s)});tEl.appendChild(r)});
+const bounce=i=>{const l=letters[i];if(l){l.classList.remove('boing');void l.offsetWidth;l.classList.add('boing')}};
+let revealed=false;
+function bigReveal(){
+ confetti(220,innerWidth*.25,innerHeight*.55);confetti(220,innerWidth*.75,innerHeight*.55);sfx.win();
+ $('#cake').classList.add('done');
+ setTimeout(()=>{
+  const rv=$('#reveal');rv.hidden=false;rv.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+  if(revealed){playSong(bounce,()=>confetti(200));return}
+  if(reduce)letters.forEach(l=>l.classList.remove('hide'));
+  setTimeout(()=>playSong(i=>{const l=letters[i];if(l){l.classList.remove('hide');const r=l.getBoundingClientRect();confetti(14,r.left+r.width/2,r.top+r.height/2)}},
+   ()=>{letters.forEach(l=>l.classList.remove('hide'));revealed=true;$('#after').classList.add('show');
+    confetti(300,innerWidth/2,innerHeight*.4);setTimeout(()=>{confetti(150,innerWidth*.15,innerHeight*.8);confetti(150,innerWidth*.85,innerHeight*.8)},300);
+    sfx.win();launchBalloons()}),700);
+ },1400);
+}
+$('#replay').onclick=()=>playSong(bounce,()=>confetti(200));
+})();
+</script>
+
+</body>
+</html>
